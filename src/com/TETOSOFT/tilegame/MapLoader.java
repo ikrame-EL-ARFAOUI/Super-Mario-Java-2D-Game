@@ -28,6 +28,14 @@ public class MapLoader
     private Sprite goalSprite;
     private Sprite grubSprite;
     private Sprite flySprite;
+    private Sprite liveSprite;
+    private Sprite player6Sprite;
+    private Sprite player4Sprite;
+    private Sprite player3Sprite;
+    
+    
+    
+    
 
     /**
         Creates a new ResourceManager with the specified
@@ -183,6 +191,23 @@ public class MapLoader
                 else if (ch == '2') {
                     addSprite(newMap, flySprite, x, y);
                 }
+                else if (ch == '/') {
+                    addSprite(newMap, liveSprite, x, y);
+                }
+                else if (ch == '?') {
+                    addSprite(newMap, player6Sprite, x, y);
+                }
+                else if (ch == '-') {
+                    addSprite(newMap, player4Sprite, x, y);
+                }
+                
+                else if (ch == ';') {
+                    addSprite(newMap, player3Sprite, x, y);
+                }
+                
+                
+                
+                
             }
         }
 
@@ -259,11 +284,17 @@ public class MapLoader
             loadImage("fly3.png"),
             loadImage("grub1.png"),
             loadImage("grub2.png"),
+            loadImage("live1.png"),
+            loadImage("player6.png"),
+            loadImage("player4.png"),
+            loadImage("player3.png"),
+            
         };
 
         images[1] = new Image[images[0].length];
         images[2] = new Image[images[0].length];
         images[3] = new Image[images[0].length];
+        
         
         for (int i=0; i<images[0].length; i++) 
         {
@@ -338,13 +369,36 @@ public class MapLoader
         anim.addFrame(loadImage("coin4.png"),250);
         anim.addFrame(loadImage("coin5.png"),250);
         coinSprite = new PowerUp.Star(anim);
-
+        
+        anim = new Animation();
+        anim.addFrame(loadImage("live1.png"), 10);
+        liveSprite = new PowerUp.Lives(anim);
+        
+        
+        anim = new Animation();
+        anim.addFrame(loadImage("player6.png"), 10);
+        player6Sprite = new PowerUp.player6(anim);
+        
+        anim = new Animation();
+        anim.addFrame(loadImage("player4.png"), 10);
+        player4Sprite = new PowerUp.player4(anim);
+        
+        anim = new Animation();
+        anim.addFrame(loadImage("player3.png"), 10);
+        player3Sprite = new PowerUp.player3(anim);
+        
+        
+        
+        
+       
+        
         // create "music" sprite
         anim = new Animation();
         anim.addFrame(loadImage("music1.png"), 150);
         anim.addFrame(loadImage("music2.png"), 150);
         anim.addFrame(loadImage("music3.png"), 150);
         anim.addFrame(loadImage("music2.png"), 150);
+        
         musicSprite = new PowerUp.Music(anim);
         musicSprite=new PowerUp.Music(anim);
     }
