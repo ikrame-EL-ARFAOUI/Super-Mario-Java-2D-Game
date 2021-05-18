@@ -253,7 +253,7 @@ public class MapLoader
 
         // load left-facing images
         images[0] = new Image[] {
-            loadImage("player.png"),         
+            loadImage("player6.png"),         
             loadImage("fly1.png"),
             loadImage("fly2.png"),
             loadImage("fly3.png"),
