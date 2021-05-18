@@ -45,6 +45,28 @@ public abstract class PowerUp extends Sprite {
             super(anim);
         }
     }
+    public static class Lives extends PowerUp {
+        public Lives(Animation anim) {
+            super(anim);
+        }
+    }
+    public static class player6 extends PowerUp {
+        public player6(Animation anim) {
+            super(anim);
+        }
+    }
+    
+    public static class player4 extends PowerUp {
+        public player4(Animation anim) {
+            super(anim);
+        }
+    }
+    
+    public static class player3 extends PowerUp {
+        public player3(Animation anim) {
+            super(anim);
+        }
+    }
 
 
     /**
@@ -55,5 +77,6 @@ public abstract class PowerUp extends Sprite {
             super(anim);
         }
     }
+    
 
 }
