@@ -34,8 +34,9 @@ public class GameEngine extends GameCore
     private GameAction exit;
     private int collectedStars=0;
     private int numLives=6;
-   
-    public void init()
+    
+    
+     public void init()
     {
         super.init();
         
@@ -103,7 +104,9 @@ public class GameEngine extends GameCore
             player.setVelocityX(velocityX);
         }
         
+        
     }
+    
     
     
     public void draw(Graphics2D g) {
@@ -118,6 +121,8 @@ public class GameEngine extends GameCore
         g.setColor(Color.WHITE);
         g.drawString("Home: "+mapLoader.currentMap,700.0f,20.0f);
         
+        
+        
     }
     
     
@@ -127,6 +132,7 @@ public class GameEngine extends GameCore
     public TileMap getMap() {
         return map;
     }
+    
     
     /**
      * Gets the tile that a Sprites collides with. Only the
@@ -368,26 +374,45 @@ public class GameEngine extends GameCore
     public void acquirePowerUp(PowerUp powerUp) {
         // remove it from the map
         map.removeSprite(powerUp);
+
         
         if (powerUp instanceof PowerUp.Star) {
             // do something here, like give the player points
             collectedStars++;
+            
             if(collectedStars==100) 
             {
                 numLives++;
                 collectedStars=0;
+                
             }
+           
             
-        } else if (powerUp instanceof PowerUp.Music) {
+            
+          
+            
+        } 
+       
+        else if (powerUp instanceof PowerUp.Music) {
             // change the music
             
         } else if (powerUp instanceof PowerUp.Goal) {
             // advance to next map      
+        	
       
             map = mapLoader.loadNextMap();
             
         }
+        else if (powerUp instanceof PowerUp.Lives) {
+            
+            numLives++;
+         
+        }
+        
+        
+        
     }
+    
     
       
 }
