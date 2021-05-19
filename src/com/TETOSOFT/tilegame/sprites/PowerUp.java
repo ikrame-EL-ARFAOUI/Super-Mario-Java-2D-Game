@@ -50,20 +50,20 @@ public abstract class PowerUp extends Sprite {
             super(anim);
         }
     }
-    public static class player6 extends PowerUp {
-        public player6(Animation anim) {
+    public static class caractere1 extends PowerUp {
+        public caractere1(Animation anim) {
             super(anim);
         }
     }
     
-    public static class player4 extends PowerUp {
-        public player4(Animation anim) {
+    public static class caractere2 extends PowerUp {
+        public caractere2(Animation anim) {
             super(anim);
         }
     }
     
-    public static class player3 extends PowerUp {
-        public player3(Animation anim) {
+    public static class caractere3 extends PowerUp {
+        public caractere3(Animation anim) {
             super(anim);
         }
     }
