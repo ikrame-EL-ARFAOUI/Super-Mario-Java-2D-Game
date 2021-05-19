@@ -29,9 +29,9 @@ public class MapLoader
     private Sprite grubSprite;
     private Sprite flySprite;
     private Sprite liveSprite;
-    private Sprite player6Sprite;
-    private Sprite player4Sprite;
-    private Sprite player3Sprite;
+    private Sprite caractere1Sprite;
+    private Sprite caractere2Sprite;
+    private Sprite caractere3Sprite;
     
     
     
@@ -195,14 +195,14 @@ public class MapLoader
                     addSprite(newMap, liveSprite, x, y);
                 }
                 else if (ch == '?') {
-                    addSprite(newMap, player6Sprite, x, y);
+                    addSprite(newMap, caractere1Sprite, x, y);
                 }
                 else if (ch == '-') {
-                    addSprite(newMap, player4Sprite, x, y);
+                    addSprite(newMap, caractere2Sprite, x, y);
                 }
                 
                 else if (ch == ';') {
-                    addSprite(newMap, player3Sprite, x, y);
+                    addSprite(newMap, caractere3Sprite, x, y);
                 }
                 
                 
@@ -285,9 +285,9 @@ public class MapLoader
             loadImage("grub1.png"),
             loadImage("grub2.png"),
             loadImage("live1.png"),
-            loadImage("player6.png"),
-            loadImage("player4.png"),
-            loadImage("player3.png"),
+            loadImage("caractere1.png"),
+            loadImage("caractere2.png"),
+            loadImage("caractere3.png"),
             
         };
 
@@ -376,16 +376,16 @@ public class MapLoader
         
         
         anim = new Animation();
-        anim.addFrame(loadImage("player6.png"), 10);
-        player6Sprite = new PowerUp.player6(anim);
+        anim.addFrame(loadImage("caractere1.png"), 10);
+        caractere1Sprite = new PowerUp.caractere1(anim);
         
         anim = new Animation();
-        anim.addFrame(loadImage("player4.png"), 10);
-        player4Sprite = new PowerUp.player4(anim);
+        anim.addFrame(loadImage("caractere2.png"), 10);
+        caractere2Sprite = new PowerUp.caractere2(anim);
         
         anim = new Animation();
-        anim.addFrame(loadImage("player3.png"), 10);
-        player3Sprite = new PowerUp.player3(anim);
+        anim.addFrame(loadImage("caractere3.png"), 10);
+        caractere3Sprite = new PowerUp.caractere3(anim);
         
         
         
