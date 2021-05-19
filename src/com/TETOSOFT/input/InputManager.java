@@ -5,7 +5,7 @@ import java.awt.event.*;
 import java.util.List;
 import java.util.ArrayList;
 import javax.swing.SwingUtilities;
-
+import com.TETOSOFT.audio.Audio;
 
 public class InputManager implements KeyListener, MouseListener,
     MouseMotionListener, MouseWheelListener
@@ -247,6 +247,10 @@ public class InputManager implements KeyListener, MouseListener,
         }
         // make sure the key isn't processed for anything else
         e.consume();
+        // mario jump
+			if (e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_UP) {
+				Audio.playSound("/audio/saut.wav");
+			}
     }
 
 
