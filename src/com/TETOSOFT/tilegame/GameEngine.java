@@ -2,23 +2,29 @@ package com.TETOSOFT.tilegame;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.util.Iterator;
 
 import com.TETOSOFT.graphics.*;
 import com.TETOSOFT.input.*;
 import com.TETOSOFT.test.GameCore;
 import com.TETOSOFT.tilegame.sprites.*;
+import com.TETOSOFT.graphics.Accueil;
 
 /**
  * GameManager manages all parts of the game.
  */
 public class GameEngine extends GameCore 
 {
+	public static void main(String[]args) throws IOException {
+		Accueil maFenetre = new Accueil();
+		maFenetre.setVisible(true);
+		while(maFenetre.isShowing()) {
+			System.out.println("");
+		}
+		new GameEngine().run();
+	}
     
-    public static void main(String[] args) 
-    {
-        new GameEngine().run();
-    }
     
     public static final float GRAVITY = 0.002f;
     
