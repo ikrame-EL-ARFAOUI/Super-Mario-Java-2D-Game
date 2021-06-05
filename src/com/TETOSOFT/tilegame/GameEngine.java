@@ -21,6 +21,7 @@ public class GameEngine extends GameCore
 		maFenetre.setVisible(true);
 		while(maFenetre.isShowing()) {
 			System.out.println("");
+	
 		}
 		new GameEngine().run();
 	}
