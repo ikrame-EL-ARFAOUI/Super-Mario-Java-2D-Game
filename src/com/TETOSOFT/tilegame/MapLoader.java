@@ -46,6 +46,7 @@ public class MapLoader
         this.gc = gc;
         loadTileImages();
         loadCreatureSprites();
+        loadPowerUpSprites();
     }
 
 
