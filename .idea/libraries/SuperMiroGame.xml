@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="SuperMiroGame">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/SuperMiroGame.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

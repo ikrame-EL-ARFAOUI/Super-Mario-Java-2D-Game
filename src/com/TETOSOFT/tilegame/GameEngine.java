@@ -33,11 +33,14 @@ public class GameEngine extends GameCore
     private MapLoader mapLoader;
     private InputManager inputManager;
     private TileMapDrawer drawer;
+    private int mapNumber = 1;
+
     
     private GameAction moveLeft;
     private GameAction moveRight;
     private GameAction jump;
     private GameAction exit;
+    private GameAction switchBackgrounds;
     private int collectedStars=0;
     private int numLives=6;
     
@@ -54,13 +57,30 @@ public class GameEngine extends GameCore
         
         // load resources
         drawer = new TileMapDrawer();
-        drawer.setBackground(mapLoader.loadImage("background.jpg"));
+        drawer.setBackground(mapLoader.loadImage("background1.jpg"));
         
         // load first map
         map = mapLoader.loadNextMap();
     }
-    
-    
+
+    /**
+     * Switches Background
+     */
+    public void switchBackground()
+    {
+        if (this.mapNumber == 1)
+        {
+            drawer.setBackground(mapLoader.loadImage("background2.png"));
+        }
+        else
+        {
+            drawer.setBackground(mapLoader.loadImage("background1.jpg"));
+        }
+
+        this.mapNumber = ( this.mapNumber + 1 ) % 2;
+    }
+
+
     /**
      * Closes any resurces used by the GameManager.
      */
@@ -75,6 +95,7 @@ public class GameEngine extends GameCore
         moveRight = new GameAction("moveRight");
         jump = new GameAction("jump", GameAction.DETECT_INITAL_PRESS_ONLY);
         exit = new GameAction("exit",GameAction.DETECT_INITAL_PRESS_ONLY);
+        switchBackgrounds = new GameAction("switchBagrounds",GameAction.DETECT_INITAL_PRESS_ONLY);
         
         inputManager = new InputManager(screen.getFullScreenWindow());
         inputManager.setCursor(InputManager.INVISIBLE_CURSOR);
@@ -84,6 +105,7 @@ public class GameEngine extends GameCore
         inputManager.mapToKey(jump, KeyEvent.VK_SPACE);
         inputManager.mapToKey(jump, KeyEvent.VK_UP);
         inputManager.mapToKey(exit, KeyEvent.VK_ESCAPE);
+        inputManager.mapToKey(switchBackgrounds, KeyEvent.VK_X);
     }
     
     
@@ -92,6 +114,11 @@ public class GameEngine extends GameCore
         
         if (exit.isPressed()) {
             stop();
+        }
+
+        if (switchBackgrounds.isPressed())
+        {
+            switchBackground();
         }
         
         Player player = (Player)map.getPlayer();
@@ -121,6 +148,7 @@ public class GameEngine extends GameCore
         drawer.draw(g, map, screen.getWidth(), screen.getHeight());
         g.setColor(Color.WHITE);
         g.drawString("Press ESC for EXIT.",10.0f,20.0f);
+        g.drawString("Press X to Change Background from Night to Day",10.0f,40.0f);
         g.setColor(Color.GREEN);
         g.drawString("Coins: "+collectedStars,300.0f,20.0f);
         g.setColor(Color.YELLOW);

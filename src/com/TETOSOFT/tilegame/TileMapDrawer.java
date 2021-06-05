@@ -29,6 +29,7 @@ public class TileMapDrawer
     private static final int TILE_SIZE_BITS = 6;
 
     private Image background;
+    private int backgroundNumber;
 
     /**
         Converts a pixel position to a tile position.
@@ -68,9 +69,13 @@ public class TileMapDrawer
     /**
         Sets the background to draw.
     */
-    public void setBackground(Image background) {
+    public void setBackground(Image background)
+    {
         this.background = background;
+
     }
+
+
 
 
     /**
