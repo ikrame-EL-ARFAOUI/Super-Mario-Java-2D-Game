@@ -2,6 +2,7 @@ package com.TETOSOFT.tilegame;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.Iterator;
 
@@ -95,6 +96,7 @@ public class GameEngine extends GameCore
         moveRight = new GameAction("moveRight");
         jump = new GameAction("jump", GameAction.DETECT_INITAL_PRESS_ONLY);
         exit = new GameAction("exit",GameAction.DETECT_INITAL_PRESS_ONLY);
+        mouseClicked = new GameAction("mouseClicked",GameAction.DETECT_INITAL_PRESS_ONLY);
         switchBackgrounds = new GameAction("switchBagrounds",GameAction.DETECT_INITAL_PRESS_ONLY);
         
         inputManager = new InputManager(screen.getFullScreenWindow());
@@ -106,6 +108,7 @@ public class GameEngine extends GameCore
         inputManager.mapToKey(jump, KeyEvent.VK_UP);
         inputManager.mapToKey(exit, KeyEvent.VK_ESCAPE);
         inputManager.mapToKey(switchBackgrounds, KeyEvent.VK_X);
+        inputManager.mapToMouse(mouseClicked, MouseEvent.BUTTON3);
     }
     
     
@@ -153,7 +156,7 @@ public class GameEngine extends GameCore
     	int my = inputManager.getMouseY();
     	int screenWidth = screen.getWidth();
     	int screenHeight = screen.getHeight();
-    	if( mx >= screenWidth / 2 - 90 && mx <= screenWidth / 2 - 110) {
+    	if( mx >= screenWidth / 2 - 90 && mx <= screenWidth / 2 + 110) {
     		if(mx >= 200 && my <= 250) {
     			stop();
     		}
