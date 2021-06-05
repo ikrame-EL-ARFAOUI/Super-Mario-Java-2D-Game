@@ -9,7 +9,6 @@ import com.TETOSOFT.graphics.*;
 import com.TETOSOFT.input.*;
 import com.TETOSOFT.test.GameCore;
 import com.TETOSOFT.tilegame.sprites.*;
-import com.TETOSOFT.graphics.Accueil;
 
 /**
  * GameManager manages all parts of the game.
@@ -40,6 +39,7 @@ public class GameEngine extends GameCore
     private GameAction moveRight;
     private GameAction jump;
     private GameAction exit;
+    private GameAction mouseClicked;
     private GameAction switchBackgrounds;
     private int collectedStars=0;
     private int numLives=6;
@@ -115,6 +115,10 @@ public class GameEngine extends GameCore
         if (exit.isPressed()) {
             stop();
         }
+        
+        if(mouseClicked.isPressed()) {
+        	menuAction();
+        }
 
         if (switchBackgrounds.isPressed())
         {
@@ -143,8 +147,33 @@ public class GameEngine extends GameCore
     
     
     
-    public void draw(Graphics2D g) {
-        
+    public void menuAction() {
+		// TODO Auto-generated method stub
+    	int mx = inputManager.getMouseX();
+    	int my = inputManager.getMouseY();
+    	int screenWidth = screen.getWidth();
+    	int screenHeight = screen.getHeight();
+    	if( mx >= screenWidth / 2 - 90 && mx <= screenWidth / 2 - 110) {
+    		if(mx >= 200 && my <= 250) {
+    			stop();
+    		}
+    		if(my >= 300 && my <= 350) {
+    			new GameEngine().run();
+    		}
+    	}
+		
+	}
+
+	public void draw(Graphics2D g) {
+    	
+      	switch (getScene()) {
+    	case 1:
+    		   g.setColor(Color.black);
+    		   g.fillRect(0, 0, screen.getWidth(), screen.getHeight());
+    		   new GameOver().draw(g,screen.getWidth(),screen.getHeight());
+    		   break;
+    		   
+    	default:
         drawer.draw(g, map, screen.getWidth(), screen.getHeight());
         g.setColor(Color.WHITE);
         g.drawString("Press ESC for EXIT.",10.0f,20.0f);
@@ -155,13 +184,15 @@ public class GameEngine extends GameCore
         g.drawString("Lives: "+(numLives),500.0f,20.0f );
         g.setColor(Color.WHITE);
         g.drawString("Home: "+mapLoader.currentMap,700.0f,20.0f);
-        
+      	}
         
         
     }
     
     
-    /**
+   
+
+	/**
      * Gets the current map.
      */
     public TileMap getMap() {
@@ -395,7 +426,7 @@ public class GameEngine extends GameCore
                     } catch (InterruptedException ex) {
                         ex.printStackTrace();
                     }
-                    stop();
+                    setSceen(1);
                 }
             }
         }

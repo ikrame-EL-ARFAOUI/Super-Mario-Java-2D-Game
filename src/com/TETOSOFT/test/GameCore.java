@@ -12,6 +12,7 @@ import com.TETOSOFT.graphics.ScreenManager;
 public abstract class GameCore {
 
     protected static final int FONT_SIZE = 18;
+    private int scene;
 
     private static final DisplayMode POSSIBLE_MODES[] = {
         new DisplayMode(800, 600, 32, 0),
@@ -49,6 +50,16 @@ public abstract class GameCore {
             screen.restoreScreen();
             lazilyExit();
         }
+    }
+    
+    public int getScene() {
+		// TODO Auto-generated method stub
+		return scene;
+	}
+    
+    public void setSceen(int scene) {
+    	
+    	this.scene = scene;
     }
 
 
