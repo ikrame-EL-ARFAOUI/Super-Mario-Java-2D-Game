@@ -473,7 +473,7 @@ public class GameEngine extends GameCore
             Audio.playSound("/audio/piece.wav");
             if(collectedStars==100) 
             {
-                numLives++;
+            	 if (numLives<6) numLives++;
                 collectedStars=0;
            
             }
@@ -496,7 +496,7 @@ public class GameEngine extends GameCore
         }
         else if (powerUp instanceof PowerUp.Lives) {
             
-            numLives++;
+            if (numLives<6) numLives++;
          
         }
         
