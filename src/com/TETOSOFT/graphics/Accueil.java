@@ -3,6 +3,7 @@ package com.TETOSOFT.graphics;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -25,9 +26,17 @@ public class Accueil extends JFrame implements ActionListener {
 		    
 		    bouton.addActionListener(this);  
 
-		  	pan.setBackground(Color.red);
+		  	pan.setBackground(Color.black);
 		    pan.setLayout(new BorderLayout());
 		    pan.add(bouton, BorderLayout.SOUTH);
+		    
+		    Font titleFont = new Font("arial",Font.ITALIC,50);
+	     	Font buttonFont = new Font("arial",Font.ITALIC,20);
+
+	     	label.setFont(titleFont);
+	     	//label.setColor(Color.white);
+	     	//label.drawString("GameOver",(float) 120, (float) 120);
+	     	
 		   
 		 
 		   Font police = new Font("Tahoma", Font.BOLD, 16);
