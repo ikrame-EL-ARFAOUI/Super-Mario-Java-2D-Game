@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.Iterator;
 
+import com.TETOSOFT.audio.Audio;
 import com.TETOSOFT.graphics.*;
 import com.TETOSOFT.input.*;
 import com.TETOSOFT.test.GameCore;
@@ -414,6 +415,7 @@ public class GameEngine extends GameCore
             acquirePowerUp((PowerUp)collisionSprite);
         } else if (collisionSprite instanceof Creature) {
             Creature badguy = (Creature)collisionSprite;
+            Audio.playSound("/audio/ecrasePersonnage.wav");
             if (canKill) {
                 // kill the badguy and make player bounce
                 badguy.setState(Creature.STATE_DYING);
@@ -423,12 +425,15 @@ public class GameEngine extends GameCore
                 // player dies!
                 player.setState(Creature.STATE_DYING);
                 numLives--;
+                Audio.playSound("/audio/partiePerdue.wav");
                 if(numLives==0) {
                     try {
                         Thread.sleep(3000);
                     } catch (InterruptedException ex) {
                         ex.printStackTrace();
                     }
+                    Audio.playSound("/audio/game-over.wav");
+                    stop();
                     setSceen(1);
                 }
             }
@@ -447,16 +452,14 @@ public class GameEngine extends GameCore
         
         if (powerUp instanceof PowerUp.Star) {
             // do something here, like give the player points
-            collectedStars++;
-            
+        	collectedStars++;
+            Audio.playSound("/audio/piece.wav");
             if(collectedStars==100) 
             {
                 numLives++;
                 collectedStars=0;
-                
-            }
            
-            
+            }
             
           
             
@@ -464,12 +467,14 @@ public class GameEngine extends GameCore
        
         else if (powerUp instanceof PowerUp.Music) {
             // change the music
+        	Audio.playSound("/audio/power-up.wav");
             
         } else if (powerUp instanceof PowerUp.Goal) {
             // advance to next map      
         	
       
             map = mapLoader.loadNextMap();
+            Audio.playSound("/audio/new-map.wav");
             
         }
         else if (powerUp instanceof PowerUp.Lives) {

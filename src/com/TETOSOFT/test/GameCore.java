@@ -93,7 +93,7 @@ public abstract class GameCore {
     public void init() 
     {
         screen = new ScreenManager();
-        DisplayMode displayMode =
+        DisplayMode displayMode = //screen.getCurrentDisplayMode();
         screen.findFirstCompatibleMode(POSSIBLE_MODES);
         screen.setFullScreen(displayMode);
 
