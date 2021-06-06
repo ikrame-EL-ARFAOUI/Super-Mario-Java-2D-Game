@@ -1,102 +1,56 @@
 package com.TETOSOFT.graphics;
 
-import static org.junit.Assert.*;
 
-import org.junit.Test;
-
-
-import static org.junit.Assert.assertNull;
-
-import java.awt.Color;
 import java.awt.DisplayMode;
-import java.awt.Font;
-import java.awt.Window;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import org.junit.jupiter.api.BeforeAll;
-
-import com.TETOSOFT.graphics.ScreenManager;
-import com.TETOSOFT.graphics.GameOver;
-
-public class GameOverTest {
-
-    private static GameOver endmenu;
-    private static ScreenManager screen;
+import com.TETOSOFT.input.GameAction;
+import com.TETOSOFT.input.InputManager;
+import com.TETOSOFT.input.inputTest;
 
 
+import junit.framework.TestCase;
 
-    @BeforeAll
-    static void beforeAll() {
-        screen = new ScreenManager();
-        DisplayMode POSSIBLE_MODES[] = { new DisplayMode(800, 600, 32, 0),
-                    new DisplayMode(800, 600, 16, 0), new DisplayMode(800, 600, 24, 0), new DisplayMode(640, 480, 16, 0),
-                    new DisplayMode(640, 480, 32, 0), new DisplayMode(640, 480, 24, 0), new DisplayMode(1024, 768, 16, 0),
-                    new DisplayMode(1024, 768, 32, 0), new DisplayMode(1024, 768, 24, 0), };
+//This tests if the game over page's actions are working, pressingE to quit and R to replay
 
-        DisplayMode displayMode = screen.findFirstCompatibleMode(POSSIBLE_MODES);
-        screen.setFullScreen(displayMode);
+public class GameOverTest extends TestCase {
+	public void testGameOverKeys() throws Exception {
+	GameAction exitE = new GameAction("exitE");
+	GameAction replay = new GameAction("replay");
+	ScreenManager screenManager = new ScreenManager();
+	screenManager.setFullScreen(new DisplayMode(800, 600, 32, 0));
 
-        Window window = screen.getFullScreenWindow();
-        window.setFont(new Font("Dialog", Font.PLAIN, 18));
-        window.setBackground(Color.BLACK);
-        window.setForeground(Color.WHITE);
+	InputManager inputManager = new InputManager(screenManager.
+	    getFullScreenWindow());
 
-        endmenu = new GameOver (5,screen);
-    }
+	inputManager.mapToKey(exitE, KeyEvent.VK_E);
+	inputManager.mapToKey(replay, KeyEvent.VK_R);
 
-    @Test
-    void testExit() {
+	Robot robot = new Robot();
 
-        new Thread(
-                ()->{try {
-                        Thread.sleep(3000);
-                    } catch (InterruptedException ex) {
-                        ex.printStackTrace();
-                    }
-
-                    endmenu.getExit().press();
-                    try {
-                        Thread.sleep(3000);
-                    } catch (InterruptedException ex) {
-                        ex.printStackTrace();
-                    }
-                    assertNull(screen);
-
-                     }
-        ).start();
-
-        endmenu.run();
-
-    }
+	assertTrue("Failed to detect action '" + exitE.getName() + "'",
+	    keyPress(robot, KeyEvent.VK_E, exitE) == true);
+	Thread.sleep(100);
+	assertTrue("Failed to detect action '" + replay.getName() + "'",
+		    keyPress(robot, KeyEvent.VK_R, replay) == true);
 
 
 }
+	private boolean keyPress(Robot robot, int keycode, GameAction action) throws InterruptedException {
+        new Thread(() -> {
+            robot.keyPress(keycode);
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(inputTest.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            robot.keyRelease(keycode);
+        }).start();
+        Thread.sleep(100);
+        return action.isPressed();
+    }
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*public class GameOverTest {
-
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
-
-}*/

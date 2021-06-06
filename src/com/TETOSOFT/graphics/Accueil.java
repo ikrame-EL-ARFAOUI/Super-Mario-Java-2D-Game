@@ -41,7 +41,7 @@ public class Accueil extends JFrame implements ActionListener {
 		 
 		   Font police = new Font("Tahoma", Font.BOLD, 16);
 		   label.setFont(police);
-		   label.setForeground(Color.black);
+		   label.setForeground(Color.white);
 		   label.setHorizontalAlignment(JLabel.CENTER);
 		   pan.add(label, BorderLayout.NORTH);
 		   this.setContentPane(pan);
