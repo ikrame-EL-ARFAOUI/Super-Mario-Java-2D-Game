@@ -43,6 +43,10 @@ public class GameEngine extends GameCore
     private GameAction exit;
     private GameAction mouseClicked;
     private GameAction switchBackgrounds;
+    
+    private GameAction exitE;
+    private GameAction replay;
+    
     private int collectedStars=0;
     private int numLives=6;
     
@@ -103,6 +107,9 @@ public class GameEngine extends GameCore
         inputManager = new InputManager(screen.getFullScreenWindow());
         inputManager.setCursor(InputManager.INVISIBLE_CURSOR);
         
+        exitE = new GameAction("switchBagrounds",GameAction.DETECT_INITAL_PRESS_ONLY);
+     	replay = new GameAction("switchBagrounds",GameAction.DETECT_INITAL_PRESS_ONLY);
+        
         inputManager.mapToKey(moveLeft, KeyEvent.VK_LEFT);
         inputManager.mapToKey(moveRight, KeyEvent.VK_RIGHT);
         inputManager.mapToKey(jump, KeyEvent.VK_SPACE);
@@ -110,6 +117,9 @@ public class GameEngine extends GameCore
         inputManager.mapToKey(exit, KeyEvent.VK_ESCAPE);
         inputManager.mapToKey(switchBackgrounds, KeyEvent.VK_X);
         inputManager.mapToMouse(mouseClicked, MouseEvent.BUTTON3);
+        
+        inputManager.mapToKey(exitE, KeyEvent.VK_E);
+     	inputManager.mapToKey(replay, KeyEvent.VK_R);
     }
     
     
@@ -118,6 +128,13 @@ public class GameEngine extends GameCore
         
         if (exit.isPressed()) {
             stop();
+        }
+        
+        if (exitE.isPressed()) {
+            stop();  
+        }
+   	    if (replay.isPressed()) {
+   		 new GameEngine().run(); 
         }
         
         if(mouseClicked.isPressed()) {
@@ -433,7 +450,7 @@ public class GameEngine extends GameCore
                         ex.printStackTrace();
                     }
                     Audio.playSound("/audio/game-over.wav");
-                    stop();
+                    //stop();
                     setSceen(1);
                 }
             }

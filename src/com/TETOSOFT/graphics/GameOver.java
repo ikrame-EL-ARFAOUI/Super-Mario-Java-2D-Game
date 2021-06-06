@@ -27,6 +27,8 @@ public class GameOver {
      	g.setFont(buttonFont);
      	g.setColor(Color.GREEN);
      	
+     	g.drawString("Press E to exit and R to replay",exitButton.x-20,exitButton.y-40);
+     	
      	g.drawString("Exit", exitButton.x+70,exitButton.y+35);
      	
      	g.drawString("Rejouer", rejouerButton.x+60,rejouerButton.y+35);
